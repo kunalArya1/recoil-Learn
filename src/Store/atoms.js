@@ -17,5 +17,5 @@ export const messageAtom = atom({
 
 export const notificationAtom = atom({
   key: "notificationAtom",
-  default: 22,
+  default: 12,
 });
