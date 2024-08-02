@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { useRecoilValue } from "recoil";
 import {
   jobAtom,
   messageAtom,
   networkAtom,
   notificationAtom,
+  totalNotificationCount,
 } from "./Store/atoms";
 
 const App = () => {
@@ -23,6 +24,22 @@ const App = () => {
   const notificationCount = useRecoilValue(notificationAtom);
   const finalNotificationValue =
     notificationCount >= 100 ? "99+" : notificationCount;
+
+  const totalNotificationCounts = useRecoilValue(totalNotificationCount);
+
+  // const totalNotificationCount = useMemo(() => {
+  //   return (
+  //     newtworkNotificationsCount +
+  //     jobNotificationCount +
+  //     messageNotificationCount +
+  //     notificationCount
+  //   );
+  // }, [
+  //   newtworkNotificationsCount,
+  //   jobNotificationCount,
+  //   messageNotificationCount,
+  //   notificationCount,
+  // ]);
   return (
     <div style={{ textAlign: "center" }}>
       <button>Home</button>
@@ -30,7 +47,7 @@ const App = () => {
       <button>Jobs ({finalJobNotifcationValue})</button>
       <button>Messages ({finalMessageNotificationValue})</button>
       <button>Notifications ({finalNotificationValue})</button>
-      <button>Me</button>
+      <button>Me ({totalNotificationCounts})</button>
     </div>
   );
 };
